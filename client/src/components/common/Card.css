@@ -1,0 +1,36 @@
+﻿@import 'variables.css';
+
+.card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.card__header {
+  padding: var(--space-24);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.card__title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin: 0;
+}
+
+.card__subtitle {
+  font-size: 14px;
+  color: var(--color-text-muted);
+  margin: 4px 0 0 0;
+}
+
+.card__body {
+  padding: var(--space-24);
+}

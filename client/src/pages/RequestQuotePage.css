@@ -1,0 +1,52 @@
+﻿.request-page {
+  padding: var(--section-spacing) 0;
+  background-color: var(--color-background);
+}
+
+.request-container {
+  max-width: 800px;
+}
+
+.request-header {
+  text-align: center;
+  margin-bottom: var(--space-64);
+}
+
+.request-title {
+  font-size: 44px;
+  font-weight: 800;
+  color: var(--color-primary);
+  margin-bottom: var(--space-16);
+}
+
+.request-desc {
+  font-size: 18px;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+.request-form-wrapper {
+  background-color: var(--color-white);
+  padding: var(--space-48);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-lg);
+}
+
+@media (max-width: 768px) {
+  .request-page {
+    padding: var(--section-spacing-mobile) 0;
+  }
+  
+  .request-header {
+    margin-bottom: var(--space-32);
+  }
+  
+  .request-title {
+    font-size: 32px;
+  }
+  
+  .request-form-wrapper {
+    padding: var(--space-32);
+  }
+}

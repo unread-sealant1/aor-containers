@@ -1,0 +1,19 @@
+{
+  "name": "aor-containers",
+  "version": "1.0.0",
+  "description": "Shipping Container Sales Website",
+  "private": true,
+  "scripts": {
+    "client:dev": "npm run dev --prefix client",
+    "client:build": "npm run build --prefix client",
+    "server:dev": "npm run dev --prefix server",
+    "server:build": "npm run build --prefix server",
+    "dev": "concurrently \"npm run server:dev\" \"npm run client:dev\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.112.2"
+  }
+}

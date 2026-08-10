@@ -1,0 +1,120 @@
+﻿.about-page {
+  color: var(--color-text);
+}
+
+.about-hero {
+  background-color: var(--color-primary);
+  padding: var(--space-96) 0;
+  color: var(--color-white);
+  text-align: center;
+}
+
+.about-hero-title {
+  font-size: 56px;
+  font-weight: 800;
+  margin-bottom: var(--space-16);
+  color: var(--color-white);
+}
+
+.about-hero-desc {
+  font-size: 20px;
+  opacity: 0.9;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.about-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-64);
+  padding: var(--section-spacing) 0;
+  align-items: center;
+}
+
+.about-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-48);
+}
+
+.about-text-block h2 {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: var(--space-16);
+}
+
+.about-text-block p {
+  font-size: 18px;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+.about-image-wrapper {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  border: 12px solid var(--color-white);
+}
+
+.about-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.about-values {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-32);
+  padding-bottom: var(--section-spacing);
+}
+
+.value-card {
+  padding: var(--space-32);
+  background-color: var(--color-background);
+  border-radius: var(--radius-md);
+  text-align: center;
+  transition: all 0.3s ease;
+  border: 1px solid var(--color-border);
+}
+
+.value-card:hover {
+  transform: translateY(-5px);
+  background-color: var(--color-white);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-primary);
+}
+
+.value-card h3 {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: var(--space-12);
+}
+
+.value-card p {
+  font-size: 16px;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+@media (max-width: 992px) {
+  .about-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .about-hero-title {
+    font-size: 44px;
+  }
+}
+
+@media (max-width: 576px) {
+  .about-values {
+    grid-template-columns: 1fr;
+  }
+  
+  .about-hero-title {
+    font-size: 36px;
+  }
+}

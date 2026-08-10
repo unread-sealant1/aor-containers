@@ -1,0 +1,44 @@
+﻿@import 'variables.css';
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s ease;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Global Utility Classes */
+.section {
+  padding: var(--section-spacing) 0;
+}
+
+.section--small {
+  padding: calc(var(--section-spacing) * 0.6) 0;
+}
+
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.flex-grow { flex-grow: 1; }
+.min-h-screen { min-height: 100vh; }
+.text-center { text-align: center; }
+.w-full { width: 100%; }
+
