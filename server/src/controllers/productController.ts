@@ -1,7 +1,7 @@
 import express from 'express';
 import type { Request, Response } from 'express';
-import { supabase } from '../config/supabase';
-import type { Product } from '../models/Product';
+import { supabase } from '../config/supabase.js';
+import type { Product } from '../models/Product.js';
 import { PostgrestError } from '@supabase/supabase-js';
 
 export const getProducts = async (req: Request, res: Response) => {

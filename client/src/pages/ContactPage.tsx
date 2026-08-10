@@ -27,7 +27,7 @@ const ContactPage: React.FC = () => {
                   <Mail className='contact-detail-icon' size={24} />
                   <div className='contact-detail-text'>
                     <span className='contact-detail-label'>Email</span>
-                    <span className='contact-detail-value'>info@aorcontainers.co.za</span>
+                    <span className='contact-detail-value'>info@aorcontainers.com</span>
                   </div>
                 </div>
                 <div className='contact-detail'>

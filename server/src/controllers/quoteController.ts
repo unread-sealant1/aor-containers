@@ -1,7 +1,7 @@
 import express from 'express';
 import type { Request, Response } from 'express';
-import { supabase } from '../config/supabase';
-import type { QuoteRequest } from '../models/QuoteRequest';
+import { supabase } from '../config/supabase.js';
+import type { QuoteRequest } from '../models/QuoteRequest.js';
 import nodemailer from 'nodemailer';
 import { PostgrestError } from '@supabase/supabase-js';
 
@@ -39,7 +39,7 @@ export const submitQuote = async (req: Request, res: Response) => {
 
     const mailOptions = {
       from: process.env.EMAIL_USER,
-      to: 'sales@aorcontainers.co.za', // Replace with actual AOR email
+      to: 'sales@aorcontainers.com', // Replace with actual AOR email
       subject: `New Quote Request: ${quoteData.product} - ${quoteData.name}`,
       text: `You have a new quote request from ${quoteData.name} (${quoteData.company}).
       Product: ${quoteData.product}

@@ -3,8 +3,8 @@ import type { Application, Request, Response } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
-import productRoutes from './routes/productRoutes';
-import quoteRoutes from './routes/quoteRoutes';
+import productRoutes from './routes/productRoutes.js';
+import quoteRoutes from './routes/quoteRoutes.js';
 
 const app: Application = express();
 

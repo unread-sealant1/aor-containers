@@ -56,7 +56,7 @@ const Footer: React.FC = () => {
               </li>
               <li className='footer__contact-item'>
                 <Mail size={18} className='footer__contact-icon' />
-                <span>info@aorcontainers.co.za</span>
+                <span>info@aorcontainers.com</span>
               </li>
             </ul>
           </div>
