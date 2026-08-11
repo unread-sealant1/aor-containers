@@ -58,7 +58,7 @@ const Navbar: React.FC = () => {
       </div>
 
       {isOpen && (
-        <div className='navbar__mobile-menu'>
+        <div className='navbar__mobile-menu navbar__mobile-menu--open'>
           <div className='navbar__mobile-links'>
             {navLinks.map((link) => (
               <Link

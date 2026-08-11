@@ -1,8 +1,16 @@
-﻿import React from 'react';
+﻿import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import './AboutPage.css';
 
 const AboutPage: React.FC = () => {
+  useEffect(() => {
+    document.title = 'About Us | AOR Containers';
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Learn more about AOR Containers, the leading provider of shipping container solutions in South Africa and the SADC region.');
+    }
+  }, []);
+
   return (
     <div className='about-page'>
       <div className='about-hero'>
