@@ -9,7 +9,7 @@ const seedData = [
     slug: "20ft-standard",
     category: "Standard",
     description: "The industry standard for general cargo and storage. Durable, secure, and widely accepted across all shipping lines.",
-    images: ["https://images.unsplash.com/photo-1578163677454-b3933804a354?auto=format&fit=crop&q=80&w=1200"],
+    images: ["/20ft Standard Container.png"],
     specifications: {
       externalLength: "6.06m",
       externalWidth: "2.44m",
@@ -30,7 +30,7 @@ const seedData = [
     slug: "40ft-standard",
     category: "Standard",
     description: "High-volume storage and transit solution. Ideal for bulk goods and large scale inventory.",
-    images: ["https://images.unsplash.com/photo-1770944182416-911214039dae?auto=format&fit=crop&q=80&w=1200"],
+    images: ["/40ft Standard Container.png"],
     specifications: {
       externalLength: "12.19m",
       externalWidth: "2.44m",
@@ -51,7 +51,7 @@ const seedData = [
     slug: "40ft-high-cube",
     category: "High Cube",
     description: "Extra vertical space for oversized cargo. Perfect for voluminous goods that require more headroom.",
-    images: ["https://images.unsplash.com/photo-1778533300344-23ac61c4ca86?auto=format&fit=crop&q=80&w=1200"],
+    images: ["/40ft High Cube.png"],
     specifications: {
       externalLength: "12.19m",
       externalWidth: "2.44m",
@@ -72,7 +72,7 @@ const seedData = [
     slug: "refrigerated",
     category: "Specialized",
     description: "Precision temperature control for perishable goods. Maintains strict climate settings for pharmaceutical or food transport.",
-    images: ["https://images.unsplash.com/photo-1586528116311-6776d796367d?auto=format&fit=crop&q=80&w=1200"],
+    images: ["/Refrigerated Container 20ft.png"],
     specifications: {
       externalLength: "12.19m",
       externalWidth: "2.44m",
@@ -93,7 +93,7 @@ const seedData = [
     slug: "open-top",
     category: "Specialized",
     description: "Designed for oversized cargo that must be loaded from above. Ideal for heavy machinery and high-profile goods.",
-    images: ["https://images.unsplash.com/photo-1578163677454-b3933804a354?auto=format&fit=crop&q=80&w=1200"],
+    images: ["/Open Top Container.png"],
     specifications: {
       externalLength: "6.06m",
       externalWidth: "2.44m",
@@ -111,7 +111,7 @@ const seedData = [
     slug: "flat-rack",
     category: "Specialized",
     description: "Ideal for heavy machinery and exceptionally wide loads. Provides maximum access for oversized cargo.",
-    images: ["https://images.unsplash.com/photo-1542332213-9b5a5a76670f?auto=format&fit=crop&q=80&w=1200"],
+    images: ["/Flat-Rack.png"],
     specifications: {
       externalLength: "12.19m",
       externalWidth: "2.44m",
@@ -128,7 +128,7 @@ const seedData = [
 
 async function seed() {
   try {
-    console.log("Seeding Supabase database with reliable images...");
+    console.log("Seeding Supabase database with local public assets...");
 
     // Clear existing products
     const { error: deleteError } = await supabase
@@ -145,7 +145,7 @@ async function seed() {
 
     if (insertError) throw insertError;
 
-    console.log("✅ Database seeded successfully!");
+    console.log("✅ Database seeded successfully with local assets!");
     process.exit(0);
   } catch (error: any) {
     console.error("❌ Seeding error:", error);
