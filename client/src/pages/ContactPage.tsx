@@ -19,7 +19,7 @@ const ContactPage: React.FC = () => {
                   <Phone className='contact-detail-icon' size={24} />
                   <div className='contact-detail-text'>
                     <span className='contact-detail-label'>Phone</span>
-                    <span className='contact-detail-value'>+27 (0) 12 345 6789</span>
+                    <span className='contact-detail-value'>083 746 4811 / 069 232 9079</span>
                   </div>
                 </div>
                 <div className='contact-detail'>
@@ -40,7 +40,7 @@ const ContactPage: React.FC = () => {
                   <MessageCircle className='contact-detail-icon' size={24} />
                   <div className='contact-detail-text'>
                     <span className='contact-detail-label'>WhatsApp</span>
-                    <span className='contact-detail-value'>+27 12 345 6789</span>
+                    <span className='contact-detail-value'>+27 69 232 9079</span>
                   </div>
                 </div>
               </div>
