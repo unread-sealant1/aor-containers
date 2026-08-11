@@ -1,5 +1,5 @@
 import express from 'express';
-import { submitQuote } from '../controllers/quoteController';
+import { submitQuote } from '../controllers/quoteController.js';
 
 const router = express.Router();
 
