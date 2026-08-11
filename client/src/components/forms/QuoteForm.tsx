@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Send, CheckCircle } from 'lucide-react';
+import { useForm } from '@formspree/react';
 import Button from '../common/Button';
 import Input from '../common/Input';
-import axios from 'axios';
 import './QuoteForm.css';
 
 const countries = [
@@ -12,8 +12,8 @@ const countries = [
 ];
 
 const QuoteForm: React.FC<{ productSlug?: string }> = ({ productSlug }) => {
-  const [submitted, setSubmitted] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [state, handleSubmit] = useForm('xaewodvg');
+  const [showSuccess, setShowSuccess] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     company: '',
@@ -31,6 +31,12 @@ const QuoteForm: React.FC<{ productSlug?: string }> = ({ productSlug }) => {
   });
 
   useEffect(() => {
+    if (state.succeeded) {
+      setShowSuccess(true);
+    }
+  }, [state.succeeded]);
+
+  useEffect(() => {
     if (productSlug) {
       const productMap: Record<string, string> = {
         '20ft-standard': '20ft Standard Container',
@@ -44,28 +50,7 @@ const QuoteForm: React.FC<{ productSlug?: string }> = ({ productSlug }) => {
     }
   }, [productSlug]);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-    try {
-      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
-
-      // If 'Other' is selected, use the specified country instead
-      const submissionData = {
-        ...formData,
-        country: formData.country === 'Other' ? formData.otherCountry : formData.country
-      };
-
-      await axios.post(`${API_URL}/api/quotes/submit`, submissionData);
-      setSubmitted(true);
-    } catch (error) {
-      alert('Something went wrong. Please try again later.');
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  if (submitted) {
+  if (showSuccess) {
     return (
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
@@ -79,7 +64,7 @@ const QuoteForm: React.FC<{ productSlug?: string }> = ({ productSlug }) => {
         <p className='success-text'>
           Thank you for reaching out. Our team is reviewing your requirements and will get back to you with a personalised quotation shortly.
         </p>
-        <Button variant='primary' onClick={() => setSubmitted(false)}>Submit Another Request</Button>
+        <Button variant='primary' onClick={() => setShowSuccess(false)}>Submit Another Request</Button>
       </motion.div>
     );
   }
@@ -95,6 +80,7 @@ const QuoteForm: React.FC<{ productSlug?: string }> = ({ productSlug }) => {
         <div className='form-group'>
           <label className='form-label'>Country</label>
           <select
+            name='country'
             className='form-select'
             required
             value={formData.country}
@@ -121,6 +107,7 @@ const QuoteForm: React.FC<{ productSlug?: string }> = ({ productSlug }) => {
         <div className='form-group'>
           <label className='form-label'>Product Required</label>
           <select
+            name='product'
             className='form-select'
             required
             value={formData.product}
@@ -142,6 +129,7 @@ const QuoteForm: React.FC<{ productSlug?: string }> = ({ productSlug }) => {
         <div className='form-group'>
           <label className='form-label'>Condition</label>
           <select
+            name='condition'
             className='form-select'
             value={formData.condition}
             onChange={e => setFormData({...formData, condition: e.target.value})}
@@ -154,6 +142,7 @@ const QuoteForm: React.FC<{ productSlug?: string }> = ({ productSlug }) => {
         <div className='form-group'>
           <label className='form-label'>Delivery Method</label>
           <select
+            name='deliveryMethod'
             className='form-select'
             value={formData.deliveryMethod}
             onChange={e => setFormData({...formData, deliveryMethod: e.target.value})}
@@ -175,6 +164,7 @@ const QuoteForm: React.FC<{ productSlug?: string }> = ({ productSlug }) => {
       <div className='form-group'>
         <label className='form-label'>Additional Notes</label>
         <textarea
+          name='notes'
           className='form-textarea'
           value={formData.notes}
           onChange={e => setFormData({...formData, notes: e.target.value})}
@@ -182,7 +172,7 @@ const QuoteForm: React.FC<{ productSlug?: string }> = ({ productSlug }) => {
       </div>
 
       <div className='form-submit-container'>
-        <Button variant='primary' size='lg' rightIcon={Send} isLoading={isLoading} className='form-submit-btn'>
+        <Button variant='primary' size='lg' rightIcon={Send} isLoading={state.submitting} className='form-submit-btn'>
           Request Quote
         </Button>
       </div>
