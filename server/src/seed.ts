@@ -1,4 +1,4 @@
-import { supabase } from './config/supabase.js';
+import { supabase } from './config/supabase';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -72,7 +72,7 @@ const seedData = [
     slug: "refrigerated",
     category: "Specialized",
     description: "Precision temperature control for perishable goods. Maintains strict climate settings for pharmaceutical or food transport.",
-    images: ["https://free-images.com/storage/kuhlcontainer_r_134a.jpg"],
+    images: ["https://images.unsplash.com/photo-1586528116311-6776d796367d?auto=format&fit=crop&q=80&w=1200"],
     specifications: {
       externalLength: "12.19m",
       externalWidth: "2.44m",
@@ -93,7 +93,7 @@ const seedData = [
     slug: "open-top",
     category: "Specialized",
     description: "Designed for oversized cargo that must be loaded from above. Ideal for heavy machinery and high-profile goods.",
-    images: ["https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/ISO_22U1_Open_Top.jpg/1200px-ISO_22U1_Open_Top.jpg"],
+    images: ["https://images.unsplash.com/photo-1578163677454-b3933804a354?auto=format&fit=crop&q=80&w=1200"],
     specifications: {
       externalLength: "6.06m",
       externalWidth: "2.44m",
@@ -111,7 +111,7 @@ const seedData = [
     slug: "flat-rack",
     category: "Specialized",
     description: "Ideal for heavy machinery and exceptionally wide loads. Provides maximum access for oversized cargo.",
-    images: ["https://images.unsplash.com/photo-1586528116311-6776d796367d?auto=format&fit=crop&q=80&w=1200"],
+    images: ["https://images.unsplash.com/photo-1542332213-9b5a5a76670f?auto=format&fit=crop&q=80&w=1200"],
     specifications: {
       externalLength: "12.19m",
       externalWidth: "2.44m",
@@ -128,7 +128,7 @@ const seedData = [
 
 async function seed() {
   try {
-    console.log("Seeding Supabase database with professional images...");
+    console.log("Seeding Supabase database with reliable images...");
 
     // Clear existing products
     const { error: deleteError } = await supabase
@@ -145,7 +145,7 @@ async function seed() {
 
     if (insertError) throw insertError;
 
-    console.log("✅ Database seeded successfully with professional images!");
+    console.log("✅ Database seeded successfully!");
     process.exit(0);
   } catch (error: any) {
     console.error("❌ Seeding error:", error);
