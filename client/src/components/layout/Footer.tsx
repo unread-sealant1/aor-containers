@@ -17,7 +17,6 @@ const Footer: React.FC = () => {
               Premium shipping container solutions for B2B and B2C clients across South Africa and SADC regions. Quality inspected, reliably delivered.
             </p>
           </div>
-          </div>
 
           <div className='footer__section'>
             <h4 className='footer__heading'>Quick Links</h4>
