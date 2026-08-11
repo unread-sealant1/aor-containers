@@ -40,9 +40,12 @@ const DeliverySection: React.FC = () => {
           <div className='delivery-image-container'>
             <div className='delivery-image-box'>
                <img
-                 src='https://images.unsplash.com/photo-1586528116311-6776d796367d?auto=format&fit=crop&q=80&w=1200'
+                 src='/assets/images/delivery-truck.jpg'
                  alt='Container Delivery'
                  className='delivery-image'
+                 onError={(e) => {
+                   (e.target as HTMLImageElement).src = 'https://via.placeholder.com/800x600?text=Delivery+Truck+Coming+Soon';
+                 }}
                />
             </div>
             <div className='delivery-badge'>

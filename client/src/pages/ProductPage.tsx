@@ -16,6 +16,13 @@ const ProductPage: React.FC = () => {
       try {
         const { data } = await axios.get(`http://localhost:5000/api/products/${slug}`);
         setProduct(data.data);
+
+        // Update SEO metadata
+        document.title = `${data.data.name} | AOR Containers`;
+        const metaDescription = document.querySelector('meta[name="description"]');
+        if (metaDescription) {
+          metaDescription.setAttribute('content', data.data.description);
+        }
       } catch (error) {
         console.error('Error fetching product:', error);
       } finally {

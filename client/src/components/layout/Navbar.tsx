@@ -50,6 +50,7 @@ const Navbar: React.FC = () => {
             onClick={() => setIsOpen(!isOpen)}
             className='navbar__mobile-toggle'
             aria-label='Toggle Menu'
+            aria-expanded={isOpen}
           >
             {isOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
