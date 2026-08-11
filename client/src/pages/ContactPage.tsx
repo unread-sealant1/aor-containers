@@ -1,5 +1,4 @@
 ﻿import React from 'react';
-import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, MessageCircle } from 'lucide-react';
 import QuoteForm from '../components/forms/QuoteForm';
 import './ContactPage.css';

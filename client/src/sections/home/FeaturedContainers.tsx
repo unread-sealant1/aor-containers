@@ -1,7 +1,5 @@
 ﻿import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
-import Button from '../../components/common/Button';
 import ProductCard from '../../components/common/ProductCard';
 import './FeaturedContainers.css';
 

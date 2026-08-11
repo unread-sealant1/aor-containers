@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { MousePointerClick, FileText, CheckCircle2, Truck } from 'lucide-react';
 import './HowItWorks.css';
 

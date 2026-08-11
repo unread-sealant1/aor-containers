@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { Check, Ruler, Package, Truck, ArrowLeft } from 'lucide-react';
+import { Ruler, Package, ArrowLeft } from 'lucide-react';
 import axios from 'axios';
 import Button from '../components/common/Button';
 import type { Product } from '../types';

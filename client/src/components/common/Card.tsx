@@ -7,9 +7,9 @@ interface CardProps {
   className?: string;
 }
 
-const Card: React.FC<CardProps> = ({ title, subtitle, children, className = '' }) => {
+const Card: React.FC<CardProps> = ({ title, subtitle, children }) => {
   return (
-    <div className={card }>
+    <div className='card'>
       {title && (
         <div className='card__header'>
           <h3 className='card__title'>{title}</h3>
