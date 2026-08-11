@@ -1,5 +1,6 @@
 import React from 'react';
 import { Truck, MapPin, Globe } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import Button from '../../components/common/Button';
 import './DeliverySection.css';
 
@@ -34,7 +35,9 @@ const DeliverySection: React.FC = () => {
                 </div>
               ))}
             </div>
-            <Button variant='primary' size='lg'>Arrange Logistics</Button>
+            <Link to='/request-a-quote'>
+              <Button variant='primary' size='lg'>Arrange Logistics</Button>
+            </Link>
           </div>
 
           <div className='delivery-image-container'>

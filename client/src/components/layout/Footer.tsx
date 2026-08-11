@@ -47,7 +47,7 @@ const Footer: React.FC = () => {
               </li>
               <li className='footer__contact-item'>
                 <Phone size={18} className='footer__contact-icon' />
-                <span>083 746 4811 / 069 232 9079</span>
+                <span>+27 83 746 4811 / +27 69 232 9079</span>
               </li>
               <li className='footer__contact-item'>
                 <Mail size={18} className='footer__contact-icon' />

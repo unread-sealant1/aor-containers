@@ -19,7 +19,7 @@ const ContactPage: React.FC = () => {
                   <Phone className='contact-detail-icon' size={24} />
                   <div className='contact-detail-text'>
                     <span className='contact-detail-label'>Phone</span>
-                    <span className='contact-detail-value'>083 746 4811 / 069 232 9079</span>
+                    <span className='contact-detail-value'>+27 83 746 4811 / +27 69 232 9079</span>
                   </div>
                 </div>
                 <div className='contact-detail'>
