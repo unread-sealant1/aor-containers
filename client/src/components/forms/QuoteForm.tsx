@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Send, CheckCircle } from 'lucide-react';
 import Button from '../common/Button';
@@ -6,7 +6,7 @@ import Input from '../common/Input';
 import axios from 'axios';
 import './QuoteForm.css';
 
-const QuoteForm: React.FC = () => {
+const QuoteForm: React.FC<{ productSlug?: string }> = ({ productSlug }) => {
   const [submitted, setSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -22,6 +22,21 @@ const QuoteForm: React.FC = () => {
     deliveryAddress: '',
     notes: '',
   });
+
+  useEffect(() => {
+    if (productSlug) {
+      // Simple mapping for product names from slugs
+      const productMap: Record<string, string> = {
+        '20ft-standard': '20ft Standard Container',
+        '40ft-standard': '40ft Standard Container',
+        '40ft-high-cube': '40ft High Cube',
+        'refrigerated': 'Refrigerated Container',
+        'open-top': 'Open Top Container',
+        'flat-rack': 'Flat Rack Container',
+      };
+      setFormData(prev => ({ ...prev, product: productMap[productSlug] || productSlug }));
+    }
+  }, [productSlug]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -64,7 +79,24 @@ const QuoteForm: React.FC = () => {
         <Input label='Phone Number' name='phone' required value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} />
         <Input label='Country' name='country' required value={formData.country} onChange={e => setFormData({...formData, country: e.target.value})} />
         <Input label='Province' name='province' required value={formData.province} onChange={e => setFormData({...formData, province: e.target.value})} />
-        <Input label='Product Required' name='product' required value={formData.product} onChange={e => setFormData({...formData, product: e.target.value})} />
+
+        <div className='form-group'>
+          <label className='form-label'>Product Required</label>
+          <select
+            className='form-select'
+            required
+            value={formData.product}
+            onChange={e => setFormData({...formData, product: e.target.value})}
+          >
+            <option value=''>Select a Container</option>
+            <option value='20ft Standard Container'>20ft Standard Container</option>
+            <option value='40ft Standard Container'>40ft Standard Container</option>
+            <option value='40ft High Cube'>40ft High Cube</option>
+            <option value='Refrigerated Container'>Refrigerated Container</option>
+            <option value='Open Top Container'>Open Top Container</option>
+            <option value='Flat Rack Container'>Flat Rack Container</option>
+          </select>
+        </div>
         <Input label='Quantity' name='quantity' type='number' required value={formData.quantity} onChange={e => setFormData({...formData, quantity: parseInt(e.target.value)})} />
       </div>
 

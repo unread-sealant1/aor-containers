@@ -1,6 +1,7 @@
 ﻿import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, CheckCircle } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import Button from '../../components/common/Button';
 import './Hero.css';
 
@@ -28,12 +29,16 @@ const Hero: React.FC = () => {
           </p>
 
           <div className='hero__actions'>
-            <Button variant='primary' size='lg' rightIcon={ArrowRight}>
-              Request a Quote
-            </Button>
-            <Button variant='outline' size='lg' className='btn-white'>
-              View Containers
-            </Button>
+            <Link to='/request-a-quote'>
+              <Button variant='primary' size='lg' rightIcon={ArrowRight}>
+                Request a Quote
+              </Button>
+            </Link>
+            <Link to='/containers'>
+              <Button variant='outline' size='lg' className='btn-white'>
+                View Containers
+              </Button>
+            </Link>
           </div>
 
           <div className='hero__indicators'>
