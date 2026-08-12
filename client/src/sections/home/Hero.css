@@ -111,27 +111,33 @@
 
 @media (max-width: 576px) {
   .hero {
-    height: 600px;
+    height: auto;
+    min-height: 600px;
     text-align: center;
+    display: flex;
+    align-items: flex-start;
+    padding-top: 0;
+    padding-bottom: var(--space-48);
   }
-  
+
   .hero__text-wrapper {
     margin: 0 auto;
   }
-  
+
   .hero__title {
-    font-size: 36px;
+    font-size: 32px;
+    margin-bottom: var(--space-24);
   }
-  
+
   .hero__actions {
     flex-direction: column;
     width: 100%;
   }
-  
+
   .hero__actions .btn {
     width: 100%;
   }
-  
+
   .hero__indicators {
     justify-content: center;
   }
