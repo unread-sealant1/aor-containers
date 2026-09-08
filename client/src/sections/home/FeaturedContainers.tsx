@@ -1,7 +1,6 @@
 ﻿import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import ProductCard from '../../components/common/ProductCard';
-import { formatCurrency } from '../../utils/currency';
 import type { Product } from '../../types';
 import './FeaturedContainers.css';
 
