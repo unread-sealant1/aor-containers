@@ -1,0 +1,73 @@
+The following is the full report on the functionality and integration of the admin panel.
+
+### 1. Page-by-Page Audit
+
+| Page | Purpose | Primary API Endpoints | Status |
+| :--- | :--- | :--- | :--- |
+| **Dashboard** | High-level stats & recent activity | `GET /admin/stats` | Fully Functional |
+| **Product List** | Inventory management & filtering | `GET /admin/containers`, `PATCH /admin/containers/publish`, `DELETE /admin/containers/:id` | Fully Functional |
+| **Product Form** | Create/Edit container details | `GET /admin/containers/:id`, `POST /admin/containers`, `PUT /admin/containers/:id`, `POST /admin/containers/upload` | Fully Functional |
+| **Enquiries** | Manage customer product leads | `GET /admin/enquiries`, `PATCH /admin/enquiries/:id`, `DELETE /admin/enquiries/:id` | Fully Functional |
+| **Messages** | Customer communication | `GET /admin/messages` | **Partially Functional** (Reply logic missing) |
+| **Media Library** | Global image overview | `GET /admin/media` | Read-Only (Deletion 501) |
+| **Settings** | Store configuration & pricing | `GET /admin/settings`, `POST /admin/settings` | Fully Functional |
+| **Login** | Admin authentication | `POST /api/auth/login` | Fully Functional |
+| **Orders** | Order request listing | `GET /api/admin/orders` | **Dead Page** (Not routed) |
+| **Order Detail** | Order fulfillment & notes | `GET /api/admin/orders/:id`, `PATCH .../status`, `PATCH .../notes` | **Dead Page** (Not routed) |
+
+---
+
+### 2. Backend Mapping
+
+| Frontend Action | Route (`server/src/routes/`) | Controller Method (`server/src/controllers/`) |
+| :--- | :--- | :--- |
+| View Dashboard Stats | `adminRoutes.ts` $\rightarrow$ `/stats` | `adminController.getDashboardStats` |
+| List/Filter Products | `adminRoutes.ts` $\rightarrow$ `/containers` | `adminController.getAllContainers` |
+| Save Product | `adminRoutes.ts` $\rightarrow$ `/containers` | `adminController.createContainer` / `updateContainer` |
+| Toggle Publication | `adminRoutes.ts` $\rightarrow$ `/containers/publish` | `adminController.togglePublish` |
+| Upload Image | `adminRoutes.ts` $\rightarrow$ `/containers/upload` | `adminController.uploadImage` |
+| Manage Enquiries | `adminRoutes.ts` $\rightarrow$ `/enquiries` | `enquiryController` (`get`, `updateStatus`, `delete`) |
+| Manage Messages | `adminRoutes.ts` $\rightarrow$ `/messages` | `messageController` (`getMessages`, `sendMessage`) |
+| View Media | `adminRoutes.ts` $\rightarrow$ `/media` | `mediaController.getAllMedia` |
+| Store Settings | `adminRoutes.ts` $\rightarrow$ `/settings` | `settingsController` (`getSettings`, `updateSettings`) |
+| Order Mgmt | `adminRoutes.ts` $\rightarrow$ `/orders` | `orderController` (`getOrders`, `getOrderDetail`, etc.) |
+| Admin Auth | `authRoutes.ts` $\rightarrow$ `/login` | `authController.login` |
+
+---
+
+### 3. API Specifications
+
+| Endpoint | Method | Payload | Response Shape | Auth |
+| :--- | :--- | :--- | :--- | :--- |
+| `/admin/stats` | `GET` | N/A | `{ stats: { total, published... }, recentProducts: [], ... }` | Admin |
+| `/admin/containers` | `GET` | Query: `search`, `category`... | `Product[]` | Admin |
+| `/admin/containers` | `POST` | `ProductFormData` | `Product` | Admin |
+| `/admin/containers/:id`| `PUT` | `ProductFormData` | `Product` | Admin |
+| `/admin/containers/publish`| `PATCH`| `{ id, published }` | `Product` | Admin |
+| `/admin/enquiries` | `GET` | Query: `status`, `priority` | `Enquiry[]` | Admin |
+| `/admin/enquiries/:id` | `PATCH`| `{ status, priority }` | `Enquiry` | Admin |
+| `/admin/messages` | `GET` | N/A | `Message[]` | Admin |
+| `/admin/messages` | `POST` | `{ messageId, text }` | `Message` | Admin |
+| `/admin/settings` | `GET` | N/A | `StoreSettings` | Admin |
+| `/admin/settings` | `POST` | `StoreSettings` | `StoreSettings` | Admin |
+| `/api/auth/login` | `POST` | `{ email, password }` | `{ token, user }` | Public |
+
+---
+
+### 4. Data Flow Analysis
+*   **Type Matching**: Frontend interfaces (e.g., `ProductFormData` in `ProductForm.tsx`) align closely with Mongoose models. 
+*   **Inconsistency**: `ProductForm.tsx` (Active) uses `category` as a string, while `AddContainer.tsx` (Stale) uses `categoryId`.
+*   **Auth Pattern**: Most pages use `apiClient` (axios) which injects the Bearer token. However, `Orders.tsx` and `OrderDetail.tsx` use raw `fetch`, meaning they would fail authentication if they were reachable.
+
+---
+
+### 5. Broken / Missing / Stale Features
+
+*   **Dead Pages**: `Orders.tsx` and `OrderDetail.tsx` are completely unreachable as they are missing from `App.tsx` routes and `AdminLayout.tsx` navigation.
+*   **Broken UI**: In `Messages.tsx`, the **"Send Reply"** button lacks an `onClick` handler; it is visually present but non-functional.
+*   **Backend 501s**: Several endpoints in `adminController.ts` return `501 Not Implemented`, including:
+    *   `getRecentOrders`, `getRecentActivity` (Dashboard components).
+    *   Category management (`createCategory`, `updateCategory`, `deleteCategory`).
+    *   Admin user management (`getAdmins`, `createAdmin`, `deleteAdmin`).
+*   **Restricted Actions**: `mediaController.deleteMedia` returns a 501, making the media library read-only.
+*   **Stale Files**: `AddContainer.tsx` is a redundant, unused version of `ProductForm.tsx` and should be removed.

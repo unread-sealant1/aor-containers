@@ -1,5 +1,7 @@
-import { supabase } from './config/supabase.js';
+import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import Product from './models/Product.js';
+import { connectDB } from './config/db.js';
 
 dotenv.config();
 
@@ -7,145 +9,121 @@ const seedData = [
   {
     name: "20ft Standard Container",
     slug: "20ft-standard",
-    category: "Standard",
+    category: "Standard Containers",
     description: "The industry standard for general cargo and storage. Durable, secure, and widely accepted across all shipping lines.",
-    images: ["/20ft Standard Container.png"],
+    images: [{ url: "https://via.placeholder.com/300", isPrimary: true }],
     specifications: {
-      externalLength: "6.06m",
-      externalWidth: "2.44m",
-      externalHeight: "2.59m",
+      length: "6.06m",
+      width: "2.44m",
+      height: "2.59m",
       internalLength: "5.90m",
       internalWidth: "2.35m",
       internalHeight: "2.39m",
       capacity: "33.2 m³",
       tareWeight: "2,200kg"
     },
-    conditions: ["New", "Used"],
+    conditions: [
+      { condition: "New", price: 25000 },
+      { condition: "Used", price: 15000 }
+    ],
     applications: ["General Storage", "Shipping", "Site Offices"],
     featured: true,
-    active: true
+    published: true,
+    stockQuantity: 12,
+    availability: "Available"
   },
   {
     name: "40ft Standard Container",
     slug: "40ft-standard",
-    category: "Standard",
+    category: "Standard Containers",
     description: "High-volume storage and transit solution. Ideal for bulk goods and large scale inventory.",
-    images: ["/40ft Standard Container.png"],
+    images: [{ url: "https://via.placeholder.com/300", isPrimary: true }],
     specifications: {
-      externalLength: "12.19m",
-      externalWidth: "2.44m",
-      externalHeight: "2.59m",
+      length: "12.19m",
+      width: "2.44m",
+      height: "2.59m",
       internalLength: "12.03m",
       internalWidth: "2.35m",
       internalHeight: "2.39m",
       capacity: "67.7 m³",
       tareWeight: "3,700kg"
     },
-    conditions: ["New", "Used"],
+    conditions: [
+      { condition: "New", price: 45000 },
+      { condition: "Used", price: 28000 }
+    ],
     applications: ["Bulk Shipping", "Large Scale Storage"],
     featured: true,
-    active: true
+    published: true,
+    stockQuantity: 8,
+    availability: "Available"
   },
   {
     name: "40ft High Cube",
     slug: "40ft-high-cube",
-    category: "High Cube",
+    category: "High Cube Containers",
     description: "Extra vertical space for oversized cargo. Perfect for voluminous goods that require more headroom.",
-    images: ["/40ft High Cube.png"],
+    images: [{ url: "https://via.placeholder.com/300", isPrimary: true }],
     specifications: {
-      externalLength: "12.19m",
-      externalWidth: "2.44m",
-      externalHeight: "2.89m",
-      internalLength: "12.03m",
-      internalWidth: "2.35m",
-      internalHeight: "2.69m",
+      length: "12.19m",
+      width: "2.44m",
+      height: "2.89m",
+      internalLength: "11.5m",
+      internalWidth: "2.29m",
+      internalHeight: "2.5m",
       capacity: "76.4 m³",
       tareWeight: "3,900kg"
     },
-    conditions: ["New", "Used"],
+    conditions: [
+      { condition: "New", price: 48000 },
+      { condition: "Used", price: 30000 }
+    ],
     applications: ["Oversized Cargo", "Modular Housing"],
     featured: true,
-    active: true
+    published: true,
+    stockQuantity: 5,
+    availability: "Limited Availability"
   },
   {
     name: "Refrigerated Container",
     slug: "refrigerated",
-    category: "Specialized",
+    category: "Refrigerated Containers",
     description: "Precision temperature control for perishable goods. Maintains strict climate settings for pharmaceutical or food transport.",
-    images: ["/Refrigerated Container 20ft.png"],
+    images: [{ url: "https://via.placeholder.com/300", isPrimary: true }],
     specifications: {
-      externalLength: "12.19m",
-      externalWidth: "2.44m",
-      externalHeight: "2.89m",
+      length: "12.19m",
+      width: "2.44m",
+      height: "2.89m",
       internalLength: "11.5m",
       internalWidth: "2.29m",
       internalHeight: "2.5m",
       capacity: "67.0 m³",
       tareWeight: "4,500kg"
     },
-    conditions: ["New", "Used"],
+    conditions: [
+      { condition: "New", price: 85000 },
+      { condition: "Used", price: 50000 }
+    ],
     applications: ["Cold Chain Logistics", "Food Storage", "Medical Transport"],
     featured: true,
-    active: true
-  },
-  {
-    name: "Open Top Container",
-    slug: "open-top",
-    category: "Specialized",
-    description: "Designed for oversized cargo that must be loaded from above. Ideal for heavy machinery and high-profile goods.",
-    images: ["/Open Top Container.png"],
-    specifications: {
-      externalLength: "6.06m",
-      externalWidth: "2.44m",
-      externalHeight: "2.59m",
-      capacity: "33.2 m³",
-      tareWeight: "2,300kg"
-    },
-    conditions: ["New", "Used"],
-    applications: ["Industrial Machinery", "Heavy Equipment"],
-    featured: false,
-    active: true
-  },
-  {
-    name: "Flat Rack Container",
-    slug: "flat-rack",
-    category: "Specialized",
-    description: "Ideal for heavy machinery and exceptionally wide loads. Provides maximum access for oversized cargo.",
-    images: ["/Flat-Rack.png"],
-    specifications: {
-      externalLength: "12.19m",
-      externalWidth: "2.44m",
-      externalHeight: "2.59m",
-      capacity: "N/A",
-      tareWeight: "4,000kg"
-    },
-    conditions: ["New", "Used"],
-    applications: ["Heavy Machinery", "Project Cargo"],
-    featured: false,
-    active: true
+    published: true,
+    stockQuantity: 3,
+    availability: "Limited Availability"
   }
 ];
 
 async function seed() {
   try {
-    console.log("Seeding Supabase database with local public assets...");
+    console.log("Connecting to MongoDB for seeding...");
+    await connectDB();
 
-    // Clear existing products
-    const { error: deleteError } = await supabase
-      .from('products')
-      .delete()
-      .neq('id', '00000000-0000-0000-0000-000000000000');
+    console.log("Clearing existing containers...");
+    await Product.deleteMany({});
 
-    if (deleteError) throw deleteError;
+    console.log("Inserting seed data...");
+    await Product.insertMany(seedData);
 
-    // Insert seed data
-    const { error: insertError } = await supabase
-      .from('products')
-      .insert(seedData);
-
-    if (insertError) throw insertError;
-
-    console.log("✅ Database seeded successfully with local assets!");
+    console.log("✅ Database seeded successfully!");
     process.exit(0);
   } catch (error: any) {
     console.error("❌ Seeding error:", error);
