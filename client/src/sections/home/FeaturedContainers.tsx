@@ -1,18 +1,9 @@
 ﻿import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import ProductCard from '../../components/common/ProductCard';
+import { formatCurrency } from '../../utils/currency';
+import type { Product } from '../../types';
 import './FeaturedContainers.css';
-
-interface Product {
-  name: string;
-  description: string;
-  images: string[];
-  specifications: {
-    capacity?: string;
-    [key: string]: any;
-  };
-  slug: string;
-}
 
 const FeaturedContainers: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -25,7 +16,7 @@ const FeaturedContainers: React.FC = () => {
         const response = await fetch(`${API_URL}/api/products`);
         const result = await response.json();
         if (result.success) {
-          // Only show featured products here
+          // Show a selection of real stock items (marked as featured)
           const featured = result.data.filter((p: any) => p.featured);
           setProducts(featured);
         }
@@ -52,23 +43,32 @@ const FeaturedContainers: React.FC = () => {
         </div>
 
         <div className='featured-grid'>
-          {products.map((product, index) => (
-            <motion.div
-              key={product.slug || index}
-              whileHover={{ y: -10 }}
-              className='featured-card-wrapper'
-            >
-              <ProductCard
-                product={{
-                  name: product.name,
-                  desc: product.description,
-                  spec: product.specifications?.capacity || 'N/A',
-                  img: product.images[0] || 'https://via.placeholder.com/400',
-                  slug: product.slug
-                }}
-              />
-            </motion.div>
-          ))}
+          {products.map((product, index) => {
+            const minPrice = product.conditions?.[0]?.sellingPriceZAR || 0;
+            return (
+              <motion.div
+                key={product.slug || index}
+                whileHover={{ y: -10 }}
+                className='featured-card-wrapper'
+              >
+                <ProductCard
+                  product={{
+                    name: product.name,
+                    desc: product.description,
+                    spec: product.specifications?.capacity || 'N/A',
+                    img: product.images?.[0]?.url || 'https://via.placeholder.com/400',
+                    slug: product.slug,
+                    stock: product.availability === 'On Request'
+                      ? 'On Request'
+                      : product.stockQuantity === 0
+                        ? 'Out of Stock'
+                        : `${product.stockQuantity} Available`,
+                    price: minPrice > 0 ? formatCurrency(minPrice) : 'On Request'
+                  }}
+                />
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

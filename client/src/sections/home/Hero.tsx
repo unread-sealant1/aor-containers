@@ -25,13 +25,13 @@ const Hero: React.FC = () => {
           </h1>
           <p className='hero__description'>
             Quality new and used shipping containers supplied locally and internationally.
-            Request a personalised quotation today for your business or personal storage needs.
+            Contact us today for competitive pricing for your business or personal storage needs.
           </p>
 
           <div className='hero__actions'>
-            <Link to='/request-a-quote'>
+            <Link to='/contact'>
               <Button variant='primary' size='lg' rightIcon={ArrowRight}>
-                Request a Quote
+                Enquire Now
               </Button>
             </Link>
             <Link to='/containers'>
@@ -44,9 +44,9 @@ const Hero: React.FC = () => {
           <div className='hero__indicators'>
             {[
               'Quality Inspected',
-              'Nationwide Delivery',
+              'Johannesburg Hub',
               'International Export',
-              'Fast Quote Turnaround'
+              'Quick Response Time'
             ].map((item, index) => (
               <div key={index} className='hero__indicator-item'>
                 <CheckCircle size={16} className='hero__indicator-icon' />

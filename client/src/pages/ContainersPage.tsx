@@ -1,16 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import ProductCard from '../components/common/ProductCard';
+import { formatCurrency } from '../utils/currency';
 import './ContainersPage.css';
 
 interface Product {
   name: string;
   description: string;
-  images: string[];
+  images: { url: string }[];
   specifications: {
     capacity?: string;
+    location?: string;
     [key: string]: any;
   };
   slug: string;
+  stockQuantity: number;
+  availability: string;
+  conditions: {
+    condition: string;
+    sellingPriceZAR: number;
+  }[];
 }
 
 const ContainersPage: React.FC = () => {
@@ -41,6 +49,7 @@ const ContainersPage: React.FC = () => {
 
   if (loading) return <div className='containers-page text-center'>Loading containers...</div>;
   if (error) return <div className='containers-page text-center'>{error}</div>;
+  if (products.length === 0) return <div className='containers-page text-center'>No containers are currently available.</div>;
 
   return (
     <div className='containers-page'>
@@ -49,23 +58,32 @@ const ContainersPage: React.FC = () => {
           <h1 className='containers-title'>Our Container Range</h1>
           <p className='containers-desc'>
             Explore our wide selection of new and used shipping containers,
-            rigorously inspected for quality and ready for immediate delivery.
+            rigorously inspected for quality and ready for collection.
           </p>
         </div>
 
         <div className='containers-grid'>
-          {products.map((product, index) => (
-            <ProductCard
-              key={product.slug || index}
-              product={{
-                name: product.name,
-                desc: product.description,
-                spec: product.specifications?.capacity || 'N/A',
-                img: product.images[0] || 'https://via.placeholder.com/400',
-                slug: product.slug
-              }}
-            />
-          ))}
+          {products.map((product, index) => {
+            const minPrice = product.conditions?.[0]?.sellingPriceZAR || 0;
+            return (
+              <ProductCard
+                key={product.slug || index}
+                product={{
+                  name: product.name,
+                  desc: product.description,
+                  spec: product.specifications?.capacity || 'N/A',
+                  img: product.images?.[0]?.url || 'https://via.placeholder.com/400',
+                  slug: product.slug,
+                  stock: product.availability === 'On Request'
+                    ? 'On Request'
+                    : product.stockQuantity === 0
+                      ? 'Out of Stock'
+                      : `${product.stockQuantity} Available`,
+                  price: minPrice
+                } as any}
+              />
+            );
+          })}
         </div>
       </div>
     </div>

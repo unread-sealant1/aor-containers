@@ -5,7 +5,7 @@ import './TrustIndicators.css';
 const TrustIndicators: React.FC = () => {
   const indicators = [
     { icon: ShieldCheck, title: 'Quality Inspected', desc: 'Every container undergoes a rigorous multi-point inspection.' },
-    { icon: Truck, title: 'Nationwide Delivery', desc: 'Efficient transport to any location across South Africa.' },
+    { icon: Truck, title: 'Johannesburg Hub', desc: 'Professional collection from our central Johannesburg facility.' },
     { icon: Globe, title: 'International Export', desc: 'Seamless shipping to SADC and global destinations.' },
     { icon: Users, title: 'Bulk Orders', desc: 'Competitive pricing and logistics for large scale requirements.' },
     { icon: Zap, title: 'Fast Turnaround', desc: 'Get your personalized quotation within hours, not days.' },

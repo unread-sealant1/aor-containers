@@ -40,8 +40,8 @@ const Navbar: React.FC = () => {
               </Link>
             ))}
             <div className='navbar__cta'>
-              <Link to='/request-a-quote'>
-                <Button variant='primary' size='sm'>Request a Quote</Button>
+              <Link to='/contact'>
+                <Button variant='primary' size='sm'>Enquire Now</Button>
               </Link>
             </div>
           </div>
@@ -71,8 +71,8 @@ const Navbar: React.FC = () => {
               </Link>
             ))}
             <div className='navbar__mobile-cta'>
-              <Link to='/request-a-quote' onClick={() => setIsOpen(false)}>
-                <Button variant='primary' className='btn-block'>Request a Quote</Button>
+              <Link to='/contact' onClick={() => setIsOpen(false)}>
+                <Button variant='primary' className='btn-block'>Enquire Now</Button>
               </Link>
             </div>
           </div>

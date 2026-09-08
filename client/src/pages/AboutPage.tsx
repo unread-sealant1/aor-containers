@@ -48,7 +48,7 @@ const AboutPage: React.FC = () => {
               <h2>Industrial Expertise</h2>
               <p>
                 With years of experience in the South African industrial landscape, we've built a network that ensures
-                seamless procurement and delivery. Every unit we supply undergoes a rigorous inspection process,
+                seamless procurement. Operating from our central hub in Johannesburg, every unit we supply undergoes a rigorous inspection process,
                 ensuring it is wind and water-tight, structurally sound, and fit for purpose.
               </p>
             </div>
@@ -65,7 +65,7 @@ const AboutPage: React.FC = () => {
         <div className='about-values'>
           <div className='value-card'>
             <h3>Reliability</h3>
-            <p>We deliver what we promise, on time, every time. Our logistics network is optimized for speed and safety.</p>
+            <p>We provide what we promise, on time, every time. Our procurement network is optimized for speed and safety.</p>
           </div>
           <div className='value-card'>
             <h3>Integrity</h3>
@@ -73,7 +73,7 @@ const AboutPage: React.FC = () => {
           </div>
           <div className='value-card'>
             <h3>Professionalism</h3>
-            <p>From the first quote to final delivery, we provide a premium B2B experience tailored to your needs.</p>
+            <p>From the first order to final handover, we provide a premium B2B experience tailored to your needs.</p>
           </div>
         </div>
       </div>

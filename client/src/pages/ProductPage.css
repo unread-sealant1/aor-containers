@@ -174,9 +174,32 @@
 
 .product-actions-container {
   margin-top: var(--space-24);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
 }
 
-.product-quote-btn {
+.restock-notice {
+  padding: var(--space-16) var(--space-24);
+  background-color: #fff5f5;
+  border-left: 4px solid var(--color-danger);
+  border-radius: var(--radius-sm);
+}
+
+.restock-text {
+  font-size: 14px;
+  color: #c53030;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.restock-link {
+  color: var(--color-primary);
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.product-order-btn {
   width: 100%;
   justify-content: center;
 }
@@ -194,11 +217,69 @@
   color: var(--color-danger);
 }
 
+.product-pricing-section {
+  margin: var(--space-32) 0;
+}
+
+.price-featured-card {
+  background-color: var(--color-white);
+  border: 2px solid var(--color-primary);
+  border-radius: var(--radius-lg);
+  padding: var(--space-32);
+  text-align: center;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-16);
+}
+
+.price-featured-label {
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  letter-spacing: 0.1em;
+}
+
+.price-featured-value {
+  font-size: 48px;
+  font-weight: 900;
+  color: var(--color-primary);
+  font-family: var(--font-heading);
+  margin: var(--space-8) 0;
+}
+
+.price-featured-details {
+  width: 100%;
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--space-16);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.condition-price-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  color: var(--color-text);
+}
+
+.condition-name {
+  font-weight: 500;
+}
+
+.condition-price {
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
 @media (max-width: 992px) {
   .product-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .product-title {
     font-size: 36px;
   }
@@ -208,7 +289,7 @@
   .product-page {
     padding: var(--section-spacing-mobile) 0;
   }
-  
+
   .product-specs-grid {
     grid-template-columns: 1fr;
   }

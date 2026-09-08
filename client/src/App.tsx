@@ -5,10 +5,11 @@ import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import HomePage from './pages/HomePage';
 import ProductPage from './pages/ProductPage';
-import RequestQuotePage from './pages/RequestQuotePage';
 import ContainersPage from './pages/ContainersPage';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
+import OrderForm from './pages/OrderForm';
+import OrderConfirmation from './pages/OrderConfirmation';
 import WhatsAppButton from './components/common/WhatsAppButton';
 
 const App: React.FC = () => {
@@ -23,7 +24,8 @@ const App: React.FC = () => {
             <Route path='/containers' element={<ContainersPage />} />
             <Route path='/containers/:slug' element={<ProductPage />} />
             <Route path='/contact' element={<ContactPage />} />
-            <Route path='/request-a-quote' element={<RequestQuotePage />} />
+            <Route path='/order' element={<OrderForm />} />
+            <Route path='/order-confirmation' element={<OrderConfirmation />} />
           </Routes>
         </main>
         <Footer />

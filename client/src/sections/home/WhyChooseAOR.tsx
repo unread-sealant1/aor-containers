@@ -12,8 +12,8 @@ const WhyChooseAOR: React.FC = () => {
     },
     {
       icon: Truck,
-      title: 'Nationwide Delivery',
-      desc: 'Our logistics network ensures your container arrives safely, whether you are in Gauteng or the Cape.'
+      title: 'Johannesburg Hub',
+      desc: 'Our primary facility in Johannesburg ensures a smooth and professional collection process.'
     },
     {
       icon: ShieldCheck,
@@ -23,7 +23,7 @@ const WhyChooseAOR: React.FC = () => {
     {
       icon: Clock,
       title: 'Fast Turnaround',
-      desc: 'From initial quote to final delivery, we prioritize speed without compromising on quality.'
+      desc: 'From initial order to final handover, we prioritize speed without compromising on quality.'
     },
   ];
 

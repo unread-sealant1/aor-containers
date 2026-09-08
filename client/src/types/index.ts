@@ -1,10 +1,15 @@
+export interface ConditionPrice {
+  condition: string;
+  sellingPriceZAR: number;
+}
+
 export interface Product {
-  _id?: string;
+  _id: string;
   name: string;
   slug: string;
   category: string;
   description: string;
-  images: string[];
+  images: { url: string; isPrimary: boolean }[];
   specifications: {
     externalLength: string;
     externalWidth: string;
@@ -14,29 +19,16 @@ export interface Product {
     internalHeight: string;
     capacity: string;
     tareWeight: string;
+    location?: string;
+    yearOfManufacture?: string;
   };
-  conditions: string[];
+  conditions: ConditionPrice[];
   applications: string[];
   featured: boolean;
-  active: boolean;
-  createdAt?: Date;
-  updatedAt?: Date;
-}
-
-export interface QuoteRequest {
-  name: string;
-  company: string;
-  email: string;
-  phone: string;
-  country: string;
-  province: string;
-  product: string;
-  quantity: number;
-  condition: 'New' | 'Used';
-  deliveryAddress: string;
-  notes: string;
-  status?: 'new' | 'contacted' | 'quoted' | 'won' | 'lost';
-  source?: string;
+  published: boolean;
+  stockQuantity: number;
+  availability: string;
+  currency?: string;
   createdAt?: Date;
   updatedAt?: Date;
 }

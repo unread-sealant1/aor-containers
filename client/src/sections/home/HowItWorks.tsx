@@ -7,7 +7,7 @@ const HowItWorks: React.FC = () => {
     { icon: MousePointerClick, title: 'Choose Container', desc: 'Browse our selection and find the right size and condition for your needs.' },
     { icon: FileText, title: 'Request a Quote', desc: 'Fill out our simple form with your requirements and location.' },
     { icon: CheckCircle2, title: 'Confirm Availability', desc: 'Our team confirms the stock and provides a personalized quotation.' },
-    { icon: Truck, title: 'Arrange Delivery', desc: 'Once confirmed, we coordinate a delivery or collection time that suits you.' },
+    { icon: Truck, title: 'Arrange Collection', desc: 'Once confirmed, we coordinate a collection time at our Johannesburg headquarters.' },
   ];
 
   return (
