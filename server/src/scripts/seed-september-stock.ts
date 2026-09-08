@@ -66,7 +66,7 @@ async function seedSeptemberStock() {
           // Note: sellingPriceZAR remains unset/legacy until exchange rate is provided
         } else {
           product.conditions.push({
-            condition: item.condition,
+            condition: item.condition as any,
             ownerCostUSD: item.cost,
             markupPercentage: markupPercentage,
             sellingPriceZAR: 0 // Pending calculation
@@ -82,7 +82,7 @@ async function seedSeptemberStock() {
           category: categoryMap[item.type] || 'Standard Containers',
           images: [], // Images to be added manually
           conditions: [{
-            condition: item.condition,
+            condition: item.condition as any,
             ownerCostUSD: item.cost,
             markupPercentage: markupPercentage,
             sellingPriceZAR: 0 // Pending calculation

@@ -68,7 +68,7 @@ async function updatePrices() {
       const convertedCostZAR = Math.round((data.supplierUSD * EXCHANGE_RATE) * 100) / 100;
 
       const conditionData = {
-        condition: data.grade,
+        condition: data.grade as any,
         ownerCostUSD: data.supplierUSD,
         exchangeRateUsed: EXCHANGE_RATE,
         markupPercentage: MARKUP,

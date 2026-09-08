@@ -51,7 +51,7 @@ export const updateProductPrice = async (
 
   const oldPrice = product.conditions[conditionIndex].sellingPriceZAR;
 
-  product.conditions[conditionIndex] = {
+  const updatedCondition = {
     ...product.conditions[conditionIndex],
     ownerCostUSD,
     exchangeRateUsed: exchangeRate,
@@ -62,6 +62,7 @@ export const updateProductPrice = async (
     calculatedAt: new Date(),
   };
 
+  product.conditions[conditionIndex] = updatedCondition as any;
   await product.save();
 
   if (oldPrice !== sellingPriceZAR) {

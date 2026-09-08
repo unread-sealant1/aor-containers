@@ -226,7 +226,7 @@ export const updateContainer = async (req: AuthRequest, res: Response) => {
     if (updates.conditions && Array.isArray(updates.conditions)) {
       const settings = await pricingService.getGlobalPricingSettings();
 
-      product.conditions = updates.conditions.map(cond => {
+      product.conditions = updates.conditions.map((cond: any) => {
         if (cond.ownerCostUSD !== undefined) {
           const isCustom = cond.isCustomMarkup ?? false;
           const markupPercentage = isCustom
@@ -244,7 +244,7 @@ export const updateContainer = async (req: AuthRequest, res: Response) => {
           return {
             ...cond,
             exchangeRateUsed: exchangeRate,
-            markupPercentage,
+            markupPercentage: markupPercentage as number,
             isCustomMarkup: isCustom,
             convertedCostZAR,
             sellingPriceZAR,

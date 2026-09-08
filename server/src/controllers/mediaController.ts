@@ -43,7 +43,7 @@ export const deleteMedia = async (req: AuthRequest, res: Response) => {
     }
 
     const image = product.images[index];
-    if (!image) {
+    if (!image || !image.url) {
       return res.status(404).json({ success: false, message: 'Image not found' });
     }
 
