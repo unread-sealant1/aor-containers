@@ -174,7 +174,7 @@ const OrderForm: React.FC = () => {
                 label='Quantity'
                 type='number'
                 value={formData.quantity.toString()}
-                onChange={(val) => setFormData({ ...formData, quantity: parseInt(val) || 1 })}
+                onChange={(e) => setFormData({ ...formData, quantity: parseInt((e as any).target.value) || 1 })}
                 required
                 min={1}
               />

@@ -63,7 +63,7 @@ const FeaturedContainers: React.FC = () => {
                       : product.stockQuantity === 0
                         ? 'Out of Stock'
                         : `${product.stockQuantity} Available`,
-                    price: minPrice > 0 ? formatCurrency(minPrice) : 'On Request'
+                    price: minPrice
                   }}
                 />
               </motion.div>

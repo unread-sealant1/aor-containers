@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import ProductCard from '../components/common/ProductCard';
-import { formatCurrency } from '../utils/currency';
 import './ContainersPage.css';
 
 interface Product {

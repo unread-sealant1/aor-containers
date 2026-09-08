@@ -104,7 +104,7 @@ const ContactPage: React.FC = () => {
                   <Input
                     label='Full Name'
                     value={formData.customerName}
-                    onChange={(val) => setFormData({ ...formData, customerName: val })}
+                    onChange={(val) => setFormData({ ...formData, customerName: typeof val === 'string' ? val : (val as any).target.value })}
                     required
                     placeholder='Your Name'
                   />
@@ -112,14 +112,14 @@ const ContactPage: React.FC = () => {
                     label='Email Address'
                     type='email'
                     value={formData.customerEmail}
-                    onChange={(val) => setFormData({ ...formData, customerEmail: val })}
+                    onChange={(val) => setFormData({ ...formData, customerEmail: typeof val === 'string' ? val : (val as any).target.value })}
                     required
                     placeholder='your@email.com'
                   />
                   <Input
                     label='Phone Number'
                     value={formData.customerPhone}
-                    onChange={(val) => setFormData({ ...formData, customerPhone: val })}
+                    onChange={(val) => setFormData({ ...formData, customerPhone: typeof val === 'string' ? val : (val as any).target.value })}
                     required
                     placeholder='+27 ...'
                   />
