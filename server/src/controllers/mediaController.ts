@@ -35,6 +35,9 @@ export const deleteMedia = async (req: AuthRequest, res: Response) => {
 
     // The ID is formatted as 'productId_index'
     const [productId, indexStr] = id.split('_');
+    if (indexStr === undefined) {
+      return res.status(400).json({ success: false, message: 'Invalid image ID format' });
+    }
     const index = parseInt(indexStr);
 
     const product = await Product.findById(productId);

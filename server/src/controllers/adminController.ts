@@ -191,8 +191,8 @@ export const createContainer = async (req: AuthRequest, res: Response) => {
             cond.condition,
             cond.ownerCostUSD,
             {
-              markupPercentage: cond.markupPercentage,
-              isCustomMarkup: cond.isCustomMarkup
+              ...(cond.markupPercentage !== undefined && { markupPercentage: cond.markupPercentage }),
+              ...(cond.isCustomMarkup !== undefined && { isCustomMarkup: cond.isCustomMarkup })
             }
           );
         }

@@ -47,9 +47,10 @@ export const updateProductPrice = async (
   if (!product) throw new Error('Product not found');
 
   const conditionIndex = product.conditions.findIndex(c => c.condition === condition);
-  if (conditionIndex === -1) throw new Error('Condition not found on product');
+  const productCondition = product.conditions[conditionIndex];
+  if (!productCondition) throw new Error('Condition not found on product');
 
-  const oldPrice = product.conditions[conditionIndex].sellingPriceZAR;
+  const oldPrice = productCondition.sellingPriceZAR;
 
   const updatedCondition = {
     ...product.conditions[conditionIndex],

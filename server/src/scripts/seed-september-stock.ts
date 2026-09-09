@@ -61,8 +61,11 @@ async function seedSeptemberStock() {
         // Update condition pricing
         const conditionIdx = product.conditions.findIndex(c => c.condition === item.condition);
         if (conditionIdx !== -1) {
-          product.conditions[conditionIdx].ownerCostUSD = item.cost;
-          product.conditions[conditionIdx].markupPercentage = markupPercentage;
+          const condition = product.conditions[conditionIdx];
+          if (condition) {
+            condition.ownerCostUSD = item.cost;
+            condition.markupPercentage = markupPercentage;
+          }
           // Note: sellingPriceZAR remains unset/legacy until exchange rate is provided
         } else {
           product.conditions.push({
