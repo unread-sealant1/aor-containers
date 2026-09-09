@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { User, Mail, Phone, Package, Search } from 'lucide-react';
+import { User, Mail, Phone, Search } from 'lucide-react';
 import apiClient from '../api/client';
 import './Customers.css';
 

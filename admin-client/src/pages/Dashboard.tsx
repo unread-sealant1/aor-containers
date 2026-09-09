@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Package,
-  Eye,
   AlertTriangle,
   XCircle,
   CheckCircle2,
@@ -193,7 +192,7 @@ const Dashboard: React.FC = () => {
                   contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
                 />
                 <Bar dataKey="totalStock" radius={[4, 4, 0, 0]} barSize={40}>
-                  {metrics.locationMetrics.map((entry, index) => (
+                  {metrics.locationMetrics.map((_entry, index) => (
                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                   ))}
                 </Bar>

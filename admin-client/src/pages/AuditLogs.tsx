@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Clock, Package, Trash2, FileText } from 'lucide-react';
+import { Clock, Package } from 'lucide-react';
 import apiClient from '../api/client';
 import './AuditLogs.css';
 

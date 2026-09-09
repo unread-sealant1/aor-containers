@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Filter, Search, Eye, CheckCircle, Clock, AlertCircle } from 'lucide-react';
+import { Filter, Search, Eye } from 'lucide-react';
 import apiClient from '../api/client';
 import './Orders.css';
 

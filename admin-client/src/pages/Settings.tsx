@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Save, Building2, Globe, DollarSign, CreditCard, RefreshCcw } from 'lucide-react';
+import { Save, Building2, DollarSign, CreditCard, RefreshCcw } from 'lucide-react';
 import apiClient from '../api/client';
 import './Settings.css';
 

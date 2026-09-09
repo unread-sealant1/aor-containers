@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Save, CheckCircle, Clock, AlertCircle } from 'lucide-react';
+import { ArrowLeft, Save } from 'lucide-react';
 import apiClient from '../api/client';
 import './OrderDetail.css';
 

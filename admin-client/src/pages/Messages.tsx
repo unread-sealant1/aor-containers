@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Mail, Send, User, Calendar, Search } from 'lucide-react';
+import { Mail, Send, Calendar, Search } from 'lucide-react';
 import apiClient from '../api/client';
 import './Messages.css';
 
