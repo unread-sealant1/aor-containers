@@ -94,11 +94,12 @@ export const repriceAllProducts = async () => {
   let updatedCount = 0;
 
   for (const product of products) {
-    for (const cond of product.conditions) {
+    for (let i = 0; i < product.conditions.length; i++) {
+      const cond = product.conditions[i];
       if (cond.ownerCostUSD) {
         await updateProductPrice(
           product._id.toString(),
-          cond.condition || 'Used',
+          i,
           cond.ownerCostUSD
         );
         updatedCount++;
