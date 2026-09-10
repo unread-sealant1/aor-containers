@@ -92,7 +92,7 @@ export const repriceAllProducts = async () => {
       if (cond.ownerCostUSD) {
         await updateProductPrice(
           product._id.toString(),
-          cond.condition,
+          cond.condition || 'Used',
           cond.ownerCostUSD
         );
         updatedCount++;
