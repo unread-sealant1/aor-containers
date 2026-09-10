@@ -2,6 +2,7 @@ import type { Request, Response } from 'express';
 import type { AuthRequest } from '../middleware/authMiddleware.js';
 import Setting from '../models/Setting.js';
 import * as exchangeRateService from '../services/exchangeRateService.js';
+import * as pricingService from '../services/pricingService.js';
 
 const DEFAULT_SETTINGS = {
   storeName: 'AOR Containers',
@@ -64,9 +65,13 @@ export const updateSettings = async (req: AuthRequest, res: Response) => {
 export const syncExchangeRate = async (req: AuthRequest, res: Response) => {
   try {
     const result = await exchangeRateService.syncExchangeRateToSettings();
+
+    // Automatically re-price all products when the exchange rate is synced
+    const repriceResult = await pricingService.repriceAllProducts();
+
     res.json({
       success: true,
-      message: `Exchange rate successfully updated to ${result.rate} ZAR`,
+      message: `Exchange rate successfully updated to ${result.rate} ZAR. Repriced ${repriceResult.updatedCount} items.`,
       data: result
     });
   } catch (error: any) {
