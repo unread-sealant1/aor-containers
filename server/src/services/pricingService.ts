@@ -12,7 +12,7 @@ export const getGlobalPricingSettings = async () => {
   const settingsDoc = await Setting.findOne({ key: 'storeSettings' });
   const defaults = {
     defaultExchangeRate: 18.0,
-    defaultMarkupPercentage: 25,
+    defaultMarkupPercentage: 28.8,
   };
 
   return {
