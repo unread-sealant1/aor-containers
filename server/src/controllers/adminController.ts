@@ -188,7 +188,7 @@ export const createContainer = async (req: AuthRequest, res: Response) => {
         if (cond.ownerCostUSD) {
           await pricingService.updateProductPrice(
             product._id.toString(),
-            cond.condition,
+            cond.condition || 'Used',
             cond.ownerCostUSD,
             {
               ...(cond.markupPercentage !== undefined && { markupPercentage: cond.markupPercentage }),
