@@ -96,7 +96,7 @@ export const repriceAllProducts = async () => {
   for (const product of products) {
     for (let i = 0; i < product.conditions.length; i++) {
       const cond = product.conditions[i];
-      if (cond.ownerCostUSD) {
+      if (cond && cond.ownerCostUSD) {
         await updateProductPrice(
           product._id.toString(),
           i,
