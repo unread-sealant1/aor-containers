@@ -54,7 +54,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             View Details <ArrowRight size={14} className='btn-icon-right' />
           </Link>
           <Link
-            to={`/order?slug=${product.slug}`}
+            to={`/order?slug=${product.slug}&price=${product.price || 0}`}
             className='btn btn-primary btn-small'
           >
             Order Now

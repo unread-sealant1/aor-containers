@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Ruler, Package, ArrowLeft } from 'lucide-react';
 import Button from '../components/common/Button';
 import type { Product } from '../types';
@@ -9,6 +9,7 @@ import './ProductPage.css';
 
 const ProductPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
+  const navigate = useNavigate();
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -152,7 +153,7 @@ const ProductPage: React.FC = () => {
                   className='product-order-btn'
                   onClick={() => {
                     const selectedCondition = product.conditions[0];
-                    window.location.href = `/order?slug=${product.slug}&condition=${selectedCondition.condition}&price=${selectedCondition.sellingPriceZAR}`;
+                    navigate(`/order?slug=${product.slug}&condition=${selectedCondition.condition}&price=${selectedCondition.sellingPriceZAR}`);
                   }}
                 >
                   Order Now

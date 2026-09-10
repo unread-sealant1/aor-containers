@@ -98,7 +98,8 @@ const OrderForm: React.FC = () => {
     }
   };
 
-  const estimatedTotal = price * formData.quantity;
+  const finalPrice = price > 0 ? price : (product?.conditions?.[0]?.sellingPriceZAR || 0);
+  const estimatedTotal = finalPrice * formData.quantity;
 
   if (loadingProduct) return <div className='order-form-container text-center'>Loading order details...</div>;
 
@@ -129,7 +130,7 @@ const OrderForm: React.FC = () => {
             </div>
             <div className='summary-item'>
               <span className='summary-label'>Unit Price</span>
-              <strong className='summary-value'>{formatCurrency(price)}</strong>
+              <strong className='summary-value'>{formatCurrency(finalPrice)}</strong>
             </div>
           </div>
           <div className='summary-total'>
