@@ -23,7 +23,7 @@ export const getGlobalPricingSettings = async () => {
 
 export const updateProductPrice = async (
   productId: string,
-  condition: string,
+  conditionOrIndex: string | number,
   ownerCostUSD: number,
   overrideSettings?: {
     exchangeRate?: number,
@@ -46,7 +46,13 @@ export const updateProductPrice = async (
   const product = await Product.findById(productId);
   if (!product) throw new Error('Product not found');
 
-  const conditionIndex = product.conditions.findIndex(c => c.condition === condition);
+  let conditionIndex: number;
+  if (typeof conditionOrIndex === 'number') {
+    conditionIndex = conditionOrIndex;
+  } else {
+    conditionIndex = product.conditions.findIndex(c => c.condition === conditionOrIndex);
+  }
+
   const productCondition = product.conditions[conditionIndex];
   if (!productCondition) throw new Error('Condition not found on product');
 
@@ -69,7 +75,7 @@ export const updateProductPrice = async (
   if (oldPrice !== sellingPriceZAR) {
     await PriceHistory.create({
       productId,
-      condition,
+      condition: productCondition.condition || 'Unknown',
       ownerCostUSD,
       exchangeRateUsed: exchangeRate,
       markupPercentage,
