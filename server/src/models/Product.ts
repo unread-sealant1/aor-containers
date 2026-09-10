@@ -1,7 +1,7 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
 export interface ConditionPrice {
-  condition: 'New' | 'Used' | 'New & Used' | 'On Request';
+  condition?: 'New' | 'Used' | 'New & Used' | 'On Request' | 'AS IS' | 'WWT' | 'CWO' | 'IICL';
   price?: number; // Legacy field
   ownerCostUSD?: number;
   exchangeRateUsed?: number;
@@ -72,7 +72,7 @@ const productSchema = new Schema<IProduct>({
   conditions: [{
     condition: {
       type: String,
-      required: true,
+      required: false,
       enum: ['New', 'Used', 'New & Used', 'On Request', 'AS IS', 'WWT', 'CWO', 'IICL']
     },
     price: { type: Number }, // Legacy field
